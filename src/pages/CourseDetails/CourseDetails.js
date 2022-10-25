@@ -1,12 +1,31 @@
+import jsPDF from "jspdf";
 import React from "react";
 import { Button, Card } from "react-bootstrap";
-import { FaStar } from "react-icons/fa";
+import { FaDownload, FaStar } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
 
 const CourseDetails = () => {
   const course = useLoaderData();
+  const generatePDF = () => {
+    const pdf = new jsPDF("landscape", "px", "a4", "false");
+    pdf.addImage(course.picture, "PNG", 65, 20, 300, 200);
+    pdf.text(60, 260, `Course Name : ${course.name}`);
+    pdf.text(60, 280, `Course Instructor : ${course.teacher}`);
+    pdf.text(60, 300, `Course Duration : ${course.duration} Months`);
+    pdf.text(60, 320, `Course Description : ${course.details}`, {
+      maxWidth: 300,
+    });
+
+    pdf.save("course-details.pdf");
+  };
   return (
     <div className="m-5">
+      <div className="pb-3 text-center">
+        <Button onClick={generatePDF} variant="primary">
+          {" "}
+          <FaDownload></FaDownload> Download PDF
+        </Button>
+      </div>
       <Card>
         <Card.Header as="h5">{course.name} For You</Card.Header>
         <Card.Img

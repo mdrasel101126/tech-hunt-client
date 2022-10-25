@@ -6,13 +6,25 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../Context/UserContext";
 import { FaUserAlt } from "react-icons/fa";
+import { useState } from "react";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [toggleTheme, setToggleTheme] = useState(true);
+  const [theme, setTheme] = useState("light");
   console.log(user);
 
   const handleLogOut = () => {
     logOut();
+  };
+
+  const handleToggleTheme = (toggleTheme) => {
+    setToggleTheme(toggleTheme);
+    if (toggleTheme) {
+      setTheme("light");
+    } else {
+      setTheme("dark");
+    }
   };
 
   return (
@@ -93,8 +105,12 @@ const Header = () => {
               )}
 
               <p>
-                <Button variant="light" className="me-2 fw-bold">
-                  Dark Theme
+                <Button
+                  onClick={() => handleToggleTheme(!toggleTheme)}
+                  variant={theme}
+                  className="me-2 fw-bold"
+                >
+                  {theme}
                 </Button>
               </p>
             </Nav>
