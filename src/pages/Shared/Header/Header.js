@@ -47,11 +47,11 @@ const Header = () => {
               </Link>
             </Nav>
             <Nav>
-              <p>
+              <Link to="/login">
                 <Button variant="light" className="me-2 fw-bold">
                   Login
                 </Button>
-              </p>
+              </Link>
               <p>
                 <Button variant="light" className="me-2 fw-bold">
                   Log Out

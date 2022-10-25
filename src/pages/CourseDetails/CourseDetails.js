@@ -28,9 +28,11 @@ const CourseDetails = () => {
           </div>
         </Card.Body>
       </Card>
-      <Link to={`/checkout/${course.id}`}>
-        <Button variant="primary">Get Premium Access</Button>
-      </Link>
+      <div className="my-5 text-center">
+        <Link to={`/checkout/${course.id}`}>
+          <Button variant="primary">Get Premium Access</Button>
+        </Link>
+      </div>
     </div>
   );
 };
