@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import { useContext } from "react";
 import { Button, Form } from "react-bootstrap";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Context/UserContext";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
+  const [error, setError] = useState("");
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -11,6 +16,21 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(name, photoURL, email, password);
+    createUser(email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        toast.success("You are successfully registered");
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setError(errorMessage);
+        console.log(errorMessage);
+        // ..
+      });
   };
   return (
     <div className="w-75 mx-auto mb-5">

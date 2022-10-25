@@ -1,34 +1,62 @@
 import React from "react";
+import { useContext } from "react";
+import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Context/UserContext";
 
 const Login = () => {
+  const [error, setError] = useState("");
+  const { loginUser } = useContext(AuthContext);
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    loginUser(email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        setError("");
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setError(errorMessage);
+        // ..
+      });
+  };
+
   return (
     <div className="w-75 mx-auto mb-5">
       <h3>Please Login</h3>
-      <Form>
-        <Form.Group className="mb-3" controlId="formBasicFullName">
-          <Form.Label>Full Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter Full Name" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPhotoURL">
-          <Form.Label>Photo URL</Form.Label>
-          <Form.Control type="text" placeholder="Enter Photo URL" />
-        </Form.Group>
+      <Form onSubmit={handleLogin}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
+          <Form.Control
+            type="email"
+            name="email"
+            placeholder="Enter email"
+            required
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
         </Form.Group>
 
         <Button variant="primary" type="submit" className="w-100">
           Login
         </Button>
       </Form>
+      {error && <p className="text-danger">{error}</p>}
       <p className="mt-1">
         <small>
           No Accournt? Please <Link to="/register">Register</Link>
