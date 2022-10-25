@@ -1,10 +1,20 @@
 import React from "react";
-import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { Button, Container, Image, Nav, Navbar } from "react-bootstrap";
 import "./Header.css";
 import navLogo from "../../../Images/navbar-logo.jpg";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../../Context/UserContext";
+import { FaUserAlt } from "react-icons/fa";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user);
+
+  const handleLogOut = () => {
+    logOut();
+  };
+
   return (
     <div className="header-background">
       <Navbar collapseOnSelect expand="lg" variant="dark">
@@ -47,16 +57,41 @@ const Header = () => {
               </Link>
             </Nav>
             <Nav>
-              <Link to="/login">
-                <Button variant="light" className="me-2 fw-bold">
-                  Login
-                </Button>
-              </Link>
-              <p>
-                <Button variant="light" className="me-2 fw-bold">
-                  Log Out
-                </Button>
-              </p>
+              {user ? (
+                <>
+                  {user.photoURL ? (
+                    <Image
+                      roundedCircle
+                      className="me-2"
+                      title={user.displayName}
+                      style={{ height: "40px" }}
+                      src={user.photoURL}
+                    ></Image>
+                  ) : (
+                    <FaUserAlt
+                      className="me-2 text-white fs-3"
+                      title={user.displayName}
+                      style={{ height: "40px" }}
+                    ></FaUserAlt>
+                  )}
+                  <p>
+                    <Button
+                      onClick={handleLogOut}
+                      variant="light"
+                      className="me-2 fw-bold"
+                    >
+                      Log Out
+                    </Button>
+                  </p>
+                </>
+              ) : (
+                <Link to="/login">
+                  <Button variant="light" className="me-2 fw-bold">
+                    Login
+                  </Button>
+                </Link>
+              )}
+
               <p>
                 <Button variant="light" className="me-2 fw-bold">
                   Dark Theme

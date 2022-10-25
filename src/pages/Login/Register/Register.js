@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import { Button, Form } from "react-bootstrap";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/UserContext";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -20,7 +21,8 @@ const Register = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user);
+        handleUpdateUserProfile(name, photoURL);
+        navigate("/");
         toast.success("You are successfully registered");
         // ...
       })
@@ -31,6 +33,13 @@ const Register = () => {
         console.log(errorMessage);
         // ..
       });
+  };
+  const handleUpdateUserProfile = (name, photoURL) => {
+    const profile = {
+      displayName: name,
+      photoURL: photoURL,
+    };
+    updateUserProfile(profile);
   };
   return (
     <div className="w-75 mx-auto mb-5">

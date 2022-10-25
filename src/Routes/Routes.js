@@ -5,6 +5,7 @@ import CourseDetails from "../pages/CourseDetails/CourseDetails";
 import Courses from "../pages/Courses/Courses";
 import Login from "../pages/Login/Login/Login";
 import Register from "../pages/Login/Register/Register";
+import PrivateRoute from "./PrivateRoute";
 
 const routes = createBrowserRouter([
   {
@@ -31,7 +32,11 @@ const routes = createBrowserRouter([
         path: "/checkout/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:5000/course/${params.id}`),
-        element: <CheckOut></CheckOut>,
+        element: (
+          <PrivateRoute>
+            <CheckOut></CheckOut>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",

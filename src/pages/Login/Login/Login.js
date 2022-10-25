@@ -2,12 +2,16 @@ import React from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/UserContext";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 
 const Login = () => {
   const [error, setError] = useState("");
-  const { loginUser } = useContext(AuthContext);
+  const { loginUser, googleSignIn, githubSignIn } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -18,13 +22,39 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         setError("");
-        // ...
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         setError(errorMessage);
+        console.log(error);
         // ..
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        setError("");
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setError(errorMessage);
+      });
+  };
+  const handleGithubSignIn = () => {
+    githubSignIn()
+      .then((result) => {
+        setError("");
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setError(errorMessage);
       });
   };
 
@@ -67,6 +97,21 @@ const Login = () => {
         <small>OR</small>
         <hr className="w-25" />
       </div>
+      <Button
+        onClick={handleGoogleSignIn}
+        variant="primary"
+        className="w-100 mt-3"
+      >
+        {" "}
+        <FaGoogle></FaGoogle> Sign in with Google
+      </Button>
+      <Button
+        onClick={handleGithubSignIn}
+        variant="primary"
+        className="w-100 mt-3"
+      >
+        <FaGithub></FaGithub> Sign in with Github
+      </Button>
     </div>
   );
 };
