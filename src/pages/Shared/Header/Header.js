@@ -13,6 +13,7 @@ const Header = () => {
   const { user, logOut } = useContext(AuthContext);
   const [toggleTheme, setToggleTheme] = useState(true);
   const [theme, setTheme] = useState("light");
+  const [welcome, setWelcome] = useState(true);
   console.log(user);
 
   const handleLogOut = () => {
@@ -47,6 +48,7 @@ const Header = () => {
           <Navbar.Toggle
             aria-controls="responsive-navbar-nav"
             className="bg-dark"
+            onClick={() => setWelcome(!welcome)}
           />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto ms-3">
@@ -121,13 +123,15 @@ const Header = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <div className="w-75 m-5 pb-5 text-white ">
-        <h1>Welcome to TechHunt</h1>
-        <p>
-          You can learn easily popular computer languages and web development
-          tools here.
-        </p>
-        <p>Let's Explore...</p>
+      <div className={`d-lg-block ${welcome ? "d-block" : "d-none"}`}>
+        <div className="w-75 m-5 pb-5 text-white d-lg-block ">
+          <h1>Welcome to TechHunt</h1>
+          <p>
+            You can learn easily popular computer languages and web development
+            tools here.
+          </p>
+          <p>Let's Explore...</p>
+        </div>
       </div>
     </div>
   );
