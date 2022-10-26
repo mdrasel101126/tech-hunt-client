@@ -15,12 +15,10 @@ const routes = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
-    errorElement: <NotFoundPage></NotFoundPage>,
     children: [
       {
         path: "/",
         element: <CourseContent></CourseContent>,
-        errorElement: <NotFoundPage></NotFoundPage>,
         children: [
           {
             path: "/",
@@ -37,16 +35,6 @@ const routes = createBrowserRouter([
             loader: ({ params }) =>
               fetch(`http://localhost:5000/course/${params.id}`),
             element: <CourseDetails></CourseDetails>,
-          },
-          {
-            path: "/checkout/:id",
-            loader: ({ params }) =>
-              fetch(`http://localhost:5000/course/${params.id}`),
-            element: (
-              <PrivateRoute>
-                <CheckOut></CheckOut>
-              </PrivateRoute>
-            ),
           },
         ],
       },
@@ -67,6 +55,15 @@ const routes = createBrowserRouter([
         element: <Faq></Faq>,
       },
     ],
+  },
+  {
+    path: "/checkout/:id",
+    loader: ({ params }) => fetch(`http://localhost:5000/course/${params.id}`),
+    element: (
+      <PrivateRoute>
+        <CheckOut></CheckOut>
+      </PrivateRoute>
+    ),
   },
   {
     path: "*",

@@ -10,7 +10,7 @@ const PrivateRoute = ({ children }) => {
   console.log(loading);
   if (loading) {
     return (
-      <div className="mt-4 text-center">
+      <div className="mt-5 text-center">
         <Spinner className="fs-4" animation="border" variant="primary" />
       </div>
     );

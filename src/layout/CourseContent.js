@@ -5,10 +5,10 @@ import LeftSideNav from "../pages/Shared/LeftSideNav/LeftSideNav";
 const CourseContent = () => {
   return (
     <div className="row w-100">
-      <div className=" col-sm-12 col-lg-3 col-md-12 ps-5">
+      <div className="col-lg-3 col-md-4 ps-5 d-none d-sm-none d-md-block d-lg-block">
         <LeftSideNav></LeftSideNav>
       </div>
-      <div className="col-lg-9 ps-5 col-sm-12 col-md-12 mx-auto">
+      <div className="col-lg-9 ps-5 col-md-8 mx-auto">
         <Outlet></Outlet>
       </div>
     </div>

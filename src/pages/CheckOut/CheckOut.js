@@ -4,7 +4,7 @@ import { useLoaderData } from "react-router-dom";
 const CheckOut = () => {
   const course = useLoaderData();
   return (
-    <div className="w-75 bg-primary text-white m-5 p-5 rounded">
+    <div className="w-75 bg-primary text-white m-5 p-5 rounded mx-auto">
       <h1>{course.name} Course</h1>
       <p>Welcome to {course.name} Course</p>
     </div>
