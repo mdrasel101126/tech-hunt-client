@@ -3,9 +3,14 @@ import React from "react";
 import { Button, Card } from "react-bootstrap";
 import { FaDownload, FaStar } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
+import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
 const CourseDetails = () => {
   const course = useLoaderData();
+  console.log(course);
+  if (course == null) {
+    return <NotFoundPage></NotFoundPage>;
+  }
   const generatePDF = () => {
     const pdf = new jsPDF("landscape", "px", "a4", "false");
     pdf.addImage(course.picture, "PNG", 65, 20, 300, 200);

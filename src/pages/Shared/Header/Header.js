@@ -110,7 +110,7 @@ const Header = () => {
                   variant={theme}
                   className="me-2 fw-bold"
                 >
-                  {theme}
+                  {theme} mode
                 </Button>
               </p>
             </Nav>
