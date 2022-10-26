@@ -15,7 +15,7 @@ const Course = ({ course }) => {
           src={picture}
         />
         <Card.Body>
-          <Card.Title>{name} Course</Card.Title>
+          <Card.Title>{name}</Card.Title>
           <>
             <p className="my-0">
               Rating:<FaStar className="text-warning"></FaStar> {rating}

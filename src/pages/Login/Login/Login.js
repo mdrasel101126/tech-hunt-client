@@ -5,6 +5,7 @@ import { Button, Form } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/UserContext";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import "./Login.css";
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -59,7 +60,7 @@ const Login = () => {
   };
 
   return (
-    <div className="w-75 mx-auto mb-5">
+    <div className="mx-auto mb-5 form-container">
       <h3>Please Login</h3>
       <Form onSubmit={handleLogin}>
         <Form.Group className="mb-3" controlId="formBasicEmail">

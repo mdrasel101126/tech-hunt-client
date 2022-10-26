@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import CourseContent from "../layout/CourseContent";
 import Main from "../layout/Main";
 import CheckOut from "../pages/CheckOut/CheckOut";
 import CourseDetails from "../pages/CourseDetails/CourseDetails";
@@ -14,29 +15,35 @@ const routes = createBrowserRouter([
     children: [
       {
         path: "/",
-        loader: () => fetch("http://localhost:5000/courses"),
-        element: <Courses></Courses>,
-      },
-      {
-        path: "/courses",
-        loader: () => fetch("http://localhost:5000/courses"),
-        element: <Courses></Courses>,
-      },
-      {
-        path: "/course/:id",
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/course/${params.id}`),
-        element: <CourseDetails></CourseDetails>,
-      },
-      {
-        path: "/checkout/:id",
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/course/${params.id}`),
-        element: (
-          <PrivateRoute>
-            <CheckOut></CheckOut>
-          </PrivateRoute>
-        ),
+        element: <CourseContent></CourseContent>,
+        children: [
+          {
+            path: "/",
+            loader: () => fetch("http://localhost:5000/courses"),
+            element: <Courses></Courses>,
+          },
+          {
+            path: "/courses",
+            loader: () => fetch("http://localhost:5000/courses"),
+            element: <Courses></Courses>,
+          },
+          {
+            path: "/course/:id",
+            loader: ({ params }) =>
+              fetch(`http://localhost:5000/course/${params.id}`),
+            element: <CourseDetails></CourseDetails>,
+          },
+          {
+            path: "/checkout/:id",
+            loader: ({ params }) =>
+              fetch(`http://localhost:5000/course/${params.id}`),
+            element: (
+              <PrivateRoute>
+                <CheckOut></CheckOut>
+              </PrivateRoute>
+            ),
+          },
+        ],
       },
       {
         path: "/login",

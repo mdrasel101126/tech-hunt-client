@@ -42,7 +42,7 @@ const Register = () => {
     updateUserProfile(profile);
   };
   return (
-    <div className="w-75 mx-auto mb-5">
+    <div className="mx-auto mb-5 form-container">
       <h3>Please Register</h3>
       <Form onSubmit={handleRegister}>
         <Form.Group className="mb-3" controlId="formBasicFullName">

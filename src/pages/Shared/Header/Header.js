@@ -76,29 +76,29 @@ const Header = () => {
                       roundedCircle
                       className="me-2"
                       title={user.displayName}
-                      style={{ height: "40px" }}
+                      style={{ height: "40px", width: "40px" }}
                       src={user.photoURL}
                     ></Image>
                   ) : (
                     <FaUserAlt
                       className="me-2 text-white fs-3"
                       title={user.displayName}
-                      style={{ height: "40px" }}
+                      style={{ height: "40px", width: "40px" }}
                     ></FaUserAlt>
                   )}
                   <p>
                     <Button
                       onClick={handleLogOut}
                       variant="light"
-                      className="me-2 fw-bold"
+                      className="me-2 fw-bold "
                     >
                       Log Out
                     </Button>
                   </p>
                 </>
               ) : (
-                <Link to="/login">
-                  <Button variant="light" className="me-2 fw-bold">
+                <Link to="/login" className="mb-sm-3 mb-2">
+                  <Button variant="light" className="me-2 fw-bold ">
                     Login
                   </Button>
                 </Link>

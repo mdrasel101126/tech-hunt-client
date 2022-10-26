@@ -19,7 +19,7 @@ const CourseDetails = () => {
     pdf.save("course-details.pdf");
   };
   return (
-    <div className="m-5">
+    <div className="m-2">
       <div className="pb-3 text-center">
         <Button onClick={generatePDF} variant="primary">
           {" "}
