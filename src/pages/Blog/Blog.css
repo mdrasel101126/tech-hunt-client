@@ -1,0 +1,15 @@
+.blog-container{
+    text-align: justify;
+    margin-bottom: 50px;
+}
+
+.blog-container div{
+    background-color: aliceblue;
+    padding: 2%;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.blog-container h3,h4{
+    color: navy;
+}
