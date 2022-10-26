@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Context/UserContext";
 import { FaUserAlt } from "react-icons/fa";
 import { useState } from "react";
+import LeftSideNav from "../LeftSideNav/LeftSideNav";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -114,6 +115,9 @@ const Header = () => {
                 </Button>
               </p>
             </Nav>
+            <div className="d-md-none d-lg-none">
+              <LeftSideNav></LeftSideNav>
+            </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>

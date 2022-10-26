@@ -14,11 +14,11 @@ const LeftSideNav = () => {
   }, []);
   return (
     <div>
-      <h5 className="text-primary">Select Category</h5>
+      <h5 className="text-black ms-2">Select Category</h5>
       {categories.map((categoy) => (
         <p key={categoy.id} className="m-2">
           <Link className="text-decoration-none" to={`/course/${categoy.id}`}>
-            <Button variant="primary" className="w-75">
+            <Button variant="secondary" className="w-75">
               {categoy.name}
             </Button>
           </Link>
