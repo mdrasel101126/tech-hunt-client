@@ -7,7 +7,7 @@ const Course = ({ course }) => {
   const { id, name, picture, rating, duration } = course;
   return (
     <div>
-      <Card>
+      <Card className="shadow">
         <Card.Img
           variant="top"
           style={{ height: "150px" }}

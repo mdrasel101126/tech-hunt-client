@@ -23,6 +23,7 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         setError("");
+        form.reset();
         navigate(from, { replace: true });
       })
       .catch((error) => {

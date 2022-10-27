@@ -1,5 +1,13 @@
 import React from "react";
-import { Button, Container, Image, Nav, Navbar } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  Image,
+  Nav,
+  Navbar,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
 import "./Header.css";
 import navLogo from "../../../Images/navbar-logo.jpg";
 import { Link } from "react-router-dom";
@@ -75,13 +83,18 @@ const Header = () => {
               {user ? (
                 <>
                   {user.photoURL ? (
-                    <Image
-                      roundedCircle
-                      className="me-2"
-                      title={user.displayName}
-                      style={{ height: "40px", width: "40px" }}
-                      src={user.photoURL}
-                    ></Image>
+                    <OverlayTrigger
+                      key={"bottom"}
+                      placement={"bottom"}
+                      overlay={<Tooltip>{user.displayName}</Tooltip>}
+                    >
+                      <Image
+                        roundedCircle
+                        className="me-2"
+                        style={{ height: "40px", width: "40px" }}
+                        src={user.photoURL}
+                      ></Image>
+                    </OverlayTrigger>
                   ) : (
                     <FaUserAlt
                       className="me-2 text-white fs-3"

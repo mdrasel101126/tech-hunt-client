@@ -22,15 +22,16 @@ const Register = () => {
         // Signed in
         const user = userCredential.user;
         handleUpdateUserProfile(name, photoURL);
+        form.reset();
         navigate("/");
         toast.success("You are successfully registered");
+        setError("");
         // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         setError(errorMessage);
-        console.log(errorMessage);
         // ..
       });
   };
@@ -86,6 +87,7 @@ const Register = () => {
           Register
         </Button>
       </Form>
+      {error && <p className="text-danger">{error}</p>}
       <p className="mt-1">
         <small>
           Already Have an Accournt? Please <Link to="/login">Login</Link>
