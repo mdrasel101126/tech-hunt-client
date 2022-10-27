@@ -21,9 +21,8 @@ const Register = () => {
         // Signed in
         const user = userCredential.user;
         handleUpdateUserProfile(name, photoURL);
-        form.reset();
         navigate("/");
-
+        form.reset();
         toast.success("You are successfully registered.Please reload the page");
         setError("");
         // ...
@@ -40,7 +39,16 @@ const Register = () => {
       displayName: name,
       photoURL: photoURL,
     };
-    updateUserProfile(profile);
+    updateUserProfile(profile)
+      .then(() => {
+        // Profile updated!
+        // ...
+        window.location.reload();
+      })
+      .catch((error) => {
+        // An error occurred
+        // ...
+      });
   };
   return (
     <div className="mx-auto mb-5 form-container">
