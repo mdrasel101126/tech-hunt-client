@@ -7,7 +7,6 @@ import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
 const CourseDetails = () => {
   const course = useLoaderData();
-  console.log(course);
 
   const generatePDF = () => {
     const pdf = new jsPDF("landscape", "px", "a4", "false");

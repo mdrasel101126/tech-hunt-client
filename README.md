@@ -13,7 +13,8 @@
 - A person can login with google and github account also
 - The authentication is done by firebase
 - It has a private route system. A logged in person only can get premium access
-- It has also a blog section containing some of common questions and answer
+
+## It has also a blog section containing some of common questions and answer
 
 ## These Frontend Technologies are Used in This Website:
 

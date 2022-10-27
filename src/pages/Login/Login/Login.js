@@ -30,7 +30,6 @@ const Login = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         setError(errorMessage);
-        console.log(error);
         // ..
       });
   };

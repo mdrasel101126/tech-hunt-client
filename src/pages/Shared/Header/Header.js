@@ -22,7 +22,6 @@ const Header = () => {
   const [toggleTheme, setToggleTheme] = useState(true);
   const [theme, setTheme] = useState("light");
   const [welcome, setWelcome] = useState(true);
-  console.log(user);
 
   const handleLogOut = () => {
     logOut();

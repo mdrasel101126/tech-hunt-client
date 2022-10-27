@@ -24,7 +24,8 @@ const Register = () => {
         handleUpdateUserProfile(name, photoURL);
         form.reset();
         navigate("/");
-        toast.success("You are successfully registered");
+
+        toast.success("You are successfully registered.Please reload the page");
         setError("");
         // ...
       })

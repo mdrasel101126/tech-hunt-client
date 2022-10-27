@@ -7,7 +7,6 @@ import { AuthContext } from "../Context/UserContext";
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const location = useLocation();
-  console.log(loading);
   if (loading) {
     return (
       <div className="mt-5 text-center">
