@@ -23,7 +23,7 @@ const Register = () => {
         handleUpdateUserProfile(name, photoURL);
         navigate("/");
         form.reset();
-        toast.success("You are successfully registered.Please reload the page");
+        toast.success("You are successfully registered");
         setError("");
         // ...
       })
