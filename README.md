@@ -6,7 +6,7 @@
 
 ## Website Features :
 
--It is an educational website
+- It is an educational website
 
 - Home page contains all courses links
 - It has login and register section with email and password
