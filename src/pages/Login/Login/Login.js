@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/UserContext";
 import { FaGithub, FaGoogle } from "react-icons/fa";
@@ -9,12 +9,14 @@ import "./Login.css";
 
 const Login = () => {
   const [error, setError] = useState("");
+  const [spinner, setSpinner] = useState(false);
   const { loginUser, googleSignIn, githubSignIn } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
   const handleLogin = (e) => {
     e.preventDefault();
+    setSpinner(true);
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
@@ -22,12 +24,14 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        setSpinner(false);
         setError("");
         form.reset();
         navigate(from, { replace: true });
       })
       .catch((error) => {
         const errorCode = error.code;
+        setSpinner(false);
         const errorMessage = error.message;
         setError(errorMessage);
         // ..
@@ -61,6 +65,11 @@ const Login = () => {
 
   return (
     <div className="mx-auto mb-5 form-container">
+      {spinner && (
+        <div className="text-center mt-5">
+          <Spinner animation="border" variant="primary" />
+        </div>
+      )}
       <h3>Please Login</h3>
       <Form onSubmit={handleLogin}>
         <Form.Group className="mb-3" controlId="formBasicEmail">

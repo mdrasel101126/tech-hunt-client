@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useContext } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Context/UserContext";
@@ -8,9 +8,11 @@ import { AuthContext } from "../../../Context/UserContext";
 const Register = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const [error, setError] = useState("");
+  const [spinner, setSpinner] = useState(false);
   const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
+    setSpinner(true);
     const form = e.target;
     const name = form.fullName.value;
     const photoURL = form.photoURL.value;
@@ -19,6 +21,7 @@ const Register = () => {
     createUser(email, password)
       .then((userCredential) => {
         // Signed in
+        setSpinner(false);
         const user = userCredential.user;
         handleUpdateUserProfile(name, photoURL);
         navigate("/");
@@ -29,6 +32,7 @@ const Register = () => {
       })
       .catch((error) => {
         const errorCode = error.code;
+        setSpinner(false);
         const errorMessage = error.message;
         setError(errorMessage);
         // ..
@@ -52,6 +56,11 @@ const Register = () => {
   };
   return (
     <div className="mx-auto mb-5 form-container">
+      {spinner && (
+        <div className="text-center mt-5">
+          <Spinner animation="border" variant="primary" />
+        </div>
+      )}
       <h3>Please Register</h3>
       <Form onSubmit={handleRegister}>
         <Form.Group className="mb-3" controlId="formBasicFullName">
